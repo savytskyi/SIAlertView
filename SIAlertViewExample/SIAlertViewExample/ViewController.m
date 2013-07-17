@@ -60,6 +60,9 @@
     alertView.didShowHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, didShowHandler", alertView);
     };
+    alertView.alertViewStyle = SIAlertViewStylePlainTextInput;
+    alertView.textFieldKeyboardType = UIKeyboardTypeNumberPad;
+    
     alertView.willDismissHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, willDismissHandler", alertView);
     };

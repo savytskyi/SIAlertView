@@ -46,6 +46,7 @@ static SIAlertView *__si_alert_current_view;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -806,6 +807,9 @@ static SIAlertView *__si_alert_current_view;
     [self updateMessageLabel];
     if(self.alertViewStyle == SIAlertViewStylePlainTextInput) {
         [self setupTextField];
+    }
+    if (self.textFieldKeyboardType && self.textField) {
+        self.textField.keyboardType = self.textFieldKeyboardType;
     }
     [self setupButtons];
     [self invaliadateLayout];
