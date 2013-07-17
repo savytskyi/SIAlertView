@@ -811,6 +811,9 @@ static SIAlertView *__si_alert_current_view;
     if (self.textFieldKeyboardType && self.textField) {
         self.textField.keyboardType = self.textFieldKeyboardType;
     }
+    if (self.textFieldText && self.textField) {
+        self.textField.text = self.textFieldText;
+    }
     [self setupButtons];
     [self invaliadateLayout];
 }
