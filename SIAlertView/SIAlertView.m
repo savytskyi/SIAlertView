@@ -702,7 +702,7 @@ static SIAlertView *__si_alert_current_view;
     }
     if(self.textField) {
         if (y > CONTENT_PADDING_TOP) {
-            y += GAP;
+            y += GAP * 0.1;
         }
         CGFloat height = TEXTFIELD_HEIGHT;
         self.textField.frame = CGRectMake(CONTENT_PADDING_LEFT, y, self.containerView.bounds.size.width - CONTENT_PADDING_LEFT * 2, height);
@@ -836,7 +836,7 @@ static SIAlertView *__si_alert_current_view;
         self.textField.keyboardType = self.textFieldKeyboardType;
     }
     if (self.textFieldKeyboardTypeSecond && self.textFieldSecond) {
-        self.textField.keyboardType = self.textFieldKeyboardType;
+        self.textFieldSecond.keyboardType = self.textFieldKeyboardTypeSecond;
     }
     if (self.textFieldText && self.textField) {
         self.textField.text = self.textFieldText;
