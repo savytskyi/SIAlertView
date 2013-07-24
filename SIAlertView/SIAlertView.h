@@ -34,7 +34,8 @@ typedef NS_ENUM(NSInteger, SIAlertViewTransitionStyle) {
 
 typedef NS_ENUM(NSInteger, SIAlertViewStyle) {
     SIAlertViewStyleDefault = 0,
-    SIAlertViewStylePlainTextInput
+    SIAlertViewStylePlainTextInput,
+    SIAlertViewStylePlainTextInputDouble
 };
 
 @class SIAlertView;
@@ -46,6 +47,9 @@ typedef void(^SIAlertViewHandler)(SIAlertView *alertView);
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy, readonly) NSString *inputText;
 @property (nonatomic, copy, readwrite) NSString *textFieldText;
+@property (nonatomic, copy, readwrite) NSString *textFieldTextSecond;
+@property (nonatomic, copy, readwrite) NSString *placeholderText;
+@property (nonatomic, copy, readwrite) NSString *placeholderTextSecond;
 
 @property (nonatomic, assign) SIAlertViewStyle alertViewStyle; // default is SIAlertViewStyleDefault
 @property (nonatomic, assign) SIAlertViewTransitionStyle transitionStyle; // default is SIAlertViewTransitionStyleSlideFromBottom
@@ -56,6 +60,7 @@ typedef void(^SIAlertViewHandler)(SIAlertView *alertView);
 @property (nonatomic, copy) SIAlertViewHandler willDismissHandler;
 @property (nonatomic, copy) SIAlertViewHandler didDismissHandler;
 @property (nonatomic, readwrite) UIKeyboardType textFieldKeyboardType;
+@property (nonatomic, readwrite) UIKeyboardType textFieldKeyboardTypeSecond;
 
 @property (nonatomic, readonly, getter = isVisible) BOOL visible;
 

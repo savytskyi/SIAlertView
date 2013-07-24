@@ -47,6 +47,7 @@ static SIAlertView *__si_alert_current_view;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UITextField *textFieldSecond;
 
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -293,6 +294,9 @@ static SIAlertView *__si_alert_current_view;
 
 - (NSString *)inputText {
     return self.textField ? self.textField.text : @"";
+}
+- (NSString *)inputTextSecond {
+    return self.textFieldSecond ? self.textFieldSecond.text : @"";
 }
 
 #pragma mark - Setters
@@ -705,6 +709,16 @@ static SIAlertView *__si_alert_current_view;
         y += height;
         
     }
+    if(self.textFieldSecond) {
+        if (y > CONTENT_PADDING_TOP) {
+            y += GAP;
+        }
+        CGFloat height = TEXTFIELD_HEIGHT;
+        self.textFieldSecond.frame = CGRectMake(CONTENT_PADDING_LEFT, y, self.containerView.bounds.size.width - CONTENT_PADDING_LEFT * 2, height);
+        y += height;
+        
+    }
+
     if (self.items.count > 0) {
         if (y > CONTENT_PADDING_TOP) {
             y += GAP;
@@ -749,6 +763,12 @@ static SIAlertView *__si_alert_current_view;
             height += GAP;
         }
         height += TEXTFIELD_HEIGHT;
+    }
+    if (self.textFieldSecond) {
+        if (height > CONTENT_PADDING_TOP) {
+            height += GAP;
+        }
+        height += TEXTFIELD_HEIGHT + 20;
     }
     if (self.items.count > 0) {
         if (height > CONTENT_PADDING_TOP) {
@@ -808,11 +828,24 @@ static SIAlertView *__si_alert_current_view;
     if(self.alertViewStyle == SIAlertViewStylePlainTextInput) {
         [self setupTextField];
     }
+    if(self.alertViewStyle == SIAlertViewStylePlainTextInputDouble) {
+        [self setupTextField];
+        [self setuptextFieldSecond];
+    }
     if (self.textFieldKeyboardType && self.textField) {
+        self.textField.keyboardType = self.textFieldKeyboardType;
+    }
+    if (self.textFieldKeyboardTypeSecond && self.textFieldSecond) {
         self.textField.keyboardType = self.textFieldKeyboardType;
     }
     if (self.textFieldText && self.textField) {
         self.textField.text = self.textFieldText;
+    }
+    if (self.placeholderText && self.textField) {
+        self.textField.placeholder = self.placeholderText;
+    }
+    if (self.placeholderTextSecond && self.textFieldSecond) {
+        self.textFieldSecond.placeholder = self.placeholderTextSecond;
     }
     [self setupButtons];
     [self invaliadateLayout];
@@ -904,6 +937,20 @@ static SIAlertView *__si_alert_current_view;
 #endif
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+    }
+    [self invaliadateLayout];
+}
+
+-(void)setuptextFieldSecond {
+    if (!self.textFieldSecond) {
+        self.textFieldSecond = [[UITextField alloc] initWithFrame:self.bounds];
+        self.textFieldSecond.delegate = self;
+        self.textFieldSecond.text = @"";
+        self.textFieldSecond.borderStyle = UITextBorderStyleBezel;
+        [self.containerView addSubview:self.textFieldSecond];
+#if DEBUG_LAYOUT
+        self.textFieldSecond.backgroundColor = [UIColor redColor];
+#endif
     }
     [self invaliadateLayout];
 }

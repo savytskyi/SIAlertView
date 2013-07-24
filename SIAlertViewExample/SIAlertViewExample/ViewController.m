@@ -43,16 +43,16 @@
                           handler:^(SIAlertView *alertView) {
                               NSLog(@"Button1 Clicked");
                           }];
-    [alertView addButtonWithTitle:@"Button2"
-                             type:SIAlertViewButtonTypeDefault
-                          handler:^(SIAlertView *alertView) {
-                              NSLog(@"Button2 Clicked");
-                          }];
-    [alertView addButtonWithTitle:@"Button3"
-                             type:SIAlertViewButtonTypeDestructive
-                          handler:^(SIAlertView *alertView) {
-                              NSLog(@"Button3 Clicked");
-                          }];
+//    [alertView addButtonWithTitle:@"Button2"
+//                             type:SIAlertViewButtonTypeDefault
+//                          handler:^(SIAlertView *alertView) {
+//                              NSLog(@"Button2 Clicked");
+//                          }];
+//    [alertView addButtonWithTitle:@"Button3"
+//                             type:SIAlertViewButtonTypeDestructive
+//                          handler:^(SIAlertView *alertView) {
+//                              NSLog(@"Button3 Clicked");
+//                          }];
     
     alertView.willShowHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, willShowHandler", alertView);
@@ -60,9 +60,13 @@
     alertView.didShowHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, didShowHandler", alertView);
     };
-    alertView.alertViewStyle = SIAlertViewStylePlainTextInput;
+    alertView.alertViewStyle = SIAlertViewStylePlainTextInputDouble;
     alertView.textFieldKeyboardType = UIKeyboardTypeNumberPad;
+    alertView.placeholderText = @"first";
     alertView.textFieldText = @"Test";
+    alertView.textFieldKeyboardTypeSecond = UIKeyboardTypeNumberPad;
+    alertView.placeholderTextSecond = @"second";
+    alertView.textFieldTextSecond = @"Test2";
     
     alertView.willDismissHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, willDismissHandler", alertView);
