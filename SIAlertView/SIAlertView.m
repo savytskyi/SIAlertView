@@ -841,6 +841,9 @@ static SIAlertView *__si_alert_current_view;
     if (self.textFieldText && self.textField) {
         self.textField.text = self.textFieldText;
     }
+    if (self.textFieldTextSecond && self.textFieldSecond) {
+        self.textFieldSecond.text = self.textFieldTextSecond;
+    }
     if (self.placeholderText && self.textField) {
         self.textField.placeholder = self.placeholderText;
     }
